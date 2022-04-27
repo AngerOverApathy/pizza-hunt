@@ -66,7 +66,7 @@ const commentController = {
   removeReply({ params }, res) {
     Comment.findOneAndUpdate(
       { _id: params.commentId },
-      { $pull: {replies: body} }, // $pull operator to remove the specific reply from the replies array 
+      { $pull: { replies: { replyId: params.replyId } } }, // $pull operator to remove the specific reply from the replies array 
       { new: true }              //where the replyId matches the value of params.replyId passed in from the route
       )
       .then(dbPizzaData => res.json(dbPizzaData))
