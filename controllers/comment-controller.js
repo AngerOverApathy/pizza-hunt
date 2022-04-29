@@ -27,7 +27,7 @@ const commentController = {
     Comment.findOneAndUpdate(      //so we don't have to explicitly pass any arguments to addReply
       { _id: params.commentId},
       { $push: {replies: body} },
-        { new: true }
+        { new: true, runValidators: true }
       )
       .then(dbPizzaData => {
         if (!dbPizzaData) {
